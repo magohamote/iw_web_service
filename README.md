@@ -3,7 +3,7 @@
 ## What is this repository for?
  - Creating the web service used by IntelliWine's applications
  - Version 0.1
- - How do I get set up?
+## How do I get set up?
  - Summary of set up TODO
  - Configuration TODO
  - Dependencies TODO
