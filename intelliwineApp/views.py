@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
+from intelliwineApp.serializers import UserSerializer, GroupSerializer
 
 from .models import Greeting
 

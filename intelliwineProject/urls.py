@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from rest_framework import routers
-from tutorial.quickstart import views
+from intelliwineApp import views
 
 from django.contrib import admin
 admin.autodiscover()
