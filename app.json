@@ -1,0 +1,8 @@
+{
+  "name": "Python on Heroku starting Project",
+  "description": "A wine Python app, which can easily be deployed to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://github.com/magohamote/iw_web_service",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
