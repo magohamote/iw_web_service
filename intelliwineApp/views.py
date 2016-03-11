@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+#from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from intelliwineApp.serializers import UserSerializer, GroupSerializer
+from intelliwineApp.serializers import UserSerializer, GroupSerializer, BottleSerializer
+from .models import Bottle
 
 from .models import Greeting
+
 
 # Create your views here.
 def index(request):
@@ -14,7 +16,6 @@ def index(request):
 
 
 def db(request):
-
     greeting = Greeting()
     greeting.save()
 
@@ -37,3 +38,9 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+class BottleViewSet(viewsets.ModelViewSet):
+    queryset = Bottle.objects.all().order_by('color')
+    serializer_class = BottleSerializer
+
