@@ -78,9 +78,14 @@ WSGI_APPLICATION = 'intelliwineProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'dfkgpavnst8lhc',
+            # The following settings are not used with sqlite3:
+            'USER': 'xgmwdqtwmcqrxp',
+            'PASSWORD': 'U-mvV6qurPqZQjesOa9xuAHe_x',
+            'HOST': 'ec2-54-227-250-148.compute-1.amazonaws.com', 
+            'PORT': '5432',
+        }
 }
 
 # Password validation
