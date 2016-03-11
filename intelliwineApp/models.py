@@ -17,5 +17,5 @@ class Greeting(models.Model):
 class Bottle(models.Model):
     name = models.CharField()
     color = models.CharField(choices=WINE_COLOR)
-    year = models.DateTimeField()
+    year = models.IntegerField()
 
