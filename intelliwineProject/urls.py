@@ -19,7 +19,7 @@ router.register(r'bottles', views.BottleViewSet)
 
 urlpatterns = [
     url(r'^$', intelliwineApp.views.index, name='index'),
-    url(r'^db', intelliwineApp.views.db, name='db'),
+    #url(r'^db', intelliwineApp.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
