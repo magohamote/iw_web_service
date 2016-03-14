@@ -30,7 +30,7 @@ class BottleSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name', 'sweetness', 'acidity', 'tannin', 'alcohol', 'body', 'flavour_intensity')
 
     def create(self, validated_data):
-        return Bottle.object.create(**validated_data)
+        return Bottle.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
