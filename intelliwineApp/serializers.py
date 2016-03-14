@@ -17,7 +17,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class BottleSerializer(serializers.HyperlinkedModelSerializer):
 
-    pk = serializers.IntegerField(read_only=True)
+    name = serializers.CharField(max_length=250)
     sweetness = serializers.IntegerField(default=0)
     acidity = serializers.IntegerField(default=0)
     tannin = serializers.IntegerField(default=0)
@@ -27,12 +27,13 @@ class BottleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Bottle
-        fields = ('sweetness', 'acidity', 'tannin', 'alcohol', 'body', 'flavour_intensity')
+        fields = ('name', 'sweetness', 'acidity', 'tannin', 'alcohol', 'body', 'flavour_intensity')
 
     def create(self, validated_data):
         return Bottle.object.create(**validated_data)
 
     def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
         instance.sweetness = validated_data.get('sweetness', instance.sweetness)
         instance.acidity = validated_data.get('acidity', instance.acidity)
         instance.tannin = validated_data.get('tannin', instance.tannin)
