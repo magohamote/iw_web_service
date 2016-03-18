@@ -27,6 +27,6 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class BottleViewSet(viewsets.ModelViewSet):
-    queryset = Bottle.objects.all().order_by('color')
+    queryset = Bottle.objects.all().order_by('name')
     serializer_class = BottleSerializer
 
