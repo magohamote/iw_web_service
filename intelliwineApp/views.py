@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, Group
 from math import sqrt
 from rest_framework import viewsets
 from intelliwineApp.serializers import UserSerializer, GroupSerializer, BottleSerializer
-from .models import Bottle
+from .models import BottleDNA
 
 
 # Create your views here.
@@ -38,7 +38,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class BottleViewSet(viewsets.ModelViewSet):
-    queryset = Bottle.objects.all().order_by('name')
+    queryset = BottleDNA.objects.all().order_by('name')
     serializer_class = BottleSerializer
 
 

@@ -15,7 +15,6 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'bottles', views.BottleViewSet)
-router.register(r'similarity', views.cosine_similarity)
 
 urlpatterns = [
     url(r'^$', intelliwineApp.views.index, name='index'),
