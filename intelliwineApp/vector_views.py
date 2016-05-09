@@ -40,14 +40,13 @@ def compute_similarity(request):
         content = JSONRenderer().render(serializer_vector.data)
         json_data = json.loads(content)
 
+        score = 0
         for vector in json_data:
             x = get_json_value(vector)
             y = get_json_value(serializer.data)
-            print >> sys.stdout, '***********************************'
-            print >> sys.stdout, 'similarity: ', cosine_similarity(x, y)
-            print >> sys.stdout, '\n\n\n'
+            score = max(score, cosine_similarity(x, y))
 
-    return Response(status=status.HTTP_200_OK)
+    return Response(score, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
