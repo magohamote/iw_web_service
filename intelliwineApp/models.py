@@ -5,6 +5,10 @@ owner = models.ForeignKey('auth.User', related_name='bottles')
 highlighted = models.TextField()
 
 
+class TestClass(models.Model):
+    test = models.IntegerField()
+
+
 class BottleDNA(models.Model):
     clarity = models.CharField(max_length=16)
     colorSimple = models.CharField(max_length=10)
@@ -57,13 +61,13 @@ class BottleDNA(models.Model):
 
 class BottleVector(models.Model):
     intensity = models.IntegerField()
-    aromaCharacteristic = models.CharField(max_length=2048)
+    aromaCharacteristic = models.IntegerField()
     sweetness = models.IntegerField()
     acidity = models.IntegerField()
     tanning = models.IntegerField()
     alcohol = models.IntegerField()
     body = models.IntegerField()
     flavourIntensity = models.IntegerField()
-    flavourCharacteristic = models.CharField(max_length=2048)
+    flavourCharacteristic = models.IntegerField()
     finish = models.IntegerField()
     qualityLevel = models.IntegerField()

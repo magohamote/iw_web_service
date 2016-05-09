@@ -1,3 +1,4 @@
+import sys
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
@@ -30,15 +31,19 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class BottleViewSet(viewsets.ModelViewSet):
+    print >> sys.stdout, 'toto BottleViewSet'
     queryset = BottleDNA.objects.all().order_by('nameOfTheWine')
     serializer_class = BottleSerializer
 
 
 @api_view(['GET', 'POST'])
-def bottle_list(request, format=None):
+def bottle_dna_list(request):
     """
-    List all bottles, or create a new bottle.
+    List all bottles, or create a new bottle DNA.
     """
+
+    print >>sys.stdout, 'call bottle_dna_list\n'
+
     if request.method == 'GET':
         bottle = BottleDNA.objects.all()
         serializer = BottleSerializer(bottle, many=True)
@@ -53,10 +58,13 @@ def bottle_list(request, format=None):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def bottle_detail(request, pk, format=None):
+def bottle_dna_detail(request, pk):
     """
-    Retrieve, update or delete a snippet instance.
+    Retrieve, update or delete a bottle DNA instance.
     """
+
+    print >> sys.stdout, 'call bottle_dna_detail\n'
+
     try:
         bottle = BottleDNA.objects.get(pk=pk)
     except BottleDNA.DoesNotExist:
@@ -76,3 +84,5 @@ def bottle_detail(request, pk, format=None):
     elif request.method == 'DELETE':
         bottle.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+

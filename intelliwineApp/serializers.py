@@ -6,7 +6,7 @@ from math import sqrt
 
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import BottleDNA
+from .models import BottleDNA, TestClass, BottleVector
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -39,3 +39,17 @@ class BottleSerializer(serializers.HyperlinkedModelSerializer):
         denominator = sqrt(sum([a * a for a in x])) * sqrt(sum([a * a for a in y]))
         return numerator / float(denominator)
 
+
+class TestSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = TestClass
+        fields = ('test',)
+
+
+class BottleVectorSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = BottleVector
+        fields = ('intensity', 'aromaCharacteristic', 'sweetness', 'acidity', 'tanning', 'alcohol', 'body',
+                  'flavourIntensity', 'flavourCharacteristic', 'finish', 'qualityLevel')
