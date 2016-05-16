@@ -1,13 +1,14 @@
-import sys, json
+import sys
+import json
 
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 
-from intelliwineApp.models import BottleVector
+from intelliwineApp.bottleModel.bottle_vector_model import BottleVector
 from intelliwineApp.serializers import BottleVectorSerializer
-from intelliwineApp.similarity import cosine_similarity, get_json_value
+from intelliwineApp.similarity import cosine_similarity
 
 
 @api_view(['GET', 'POST'])
@@ -42,9 +43,7 @@ def compute_similarity(request):
 
         score = 0
         for vector in json_data:
-            x = get_json_value(vector)
-            y = get_json_value(serializer.data)
-            score = max(score, cosine_similarity(x, y))
+            score = max(score, cosine_similarity(vector, serializer.data))
 
     return Response(score, status=status.HTTP_200_OK)
 

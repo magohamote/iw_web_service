@@ -58,16 +58,3 @@ class BottleDNA(models.Model):
     class Meta:
         ordering = ('nameOfTheWine',)
 
-
-class BottleVector(models.Model):
-    intensity = models.IntegerField()
-    aromaCharacteristic = models.IntegerField()
-    sweetness = models.IntegerField()
-    acidity = models.IntegerField()
-    tanning = models.IntegerField()
-    alcohol = models.IntegerField()
-    body = models.IntegerField()
-    flavourIntensity = models.IntegerField()
-    flavourCharacteristic = models.IntegerField()
-    finish = models.IntegerField()
-    qualityLevel = models.IntegerField()
