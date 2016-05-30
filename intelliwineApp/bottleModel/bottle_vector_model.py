@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class BottleVector(models.Model):
+class BottleVectorCharacteristics(models.Model):
     intensity1 = models.IntegerField()
     intensity2 = models.IntegerField()
     intensity3 = models.IntegerField()
@@ -58,6 +58,8 @@ class BottleVector(models.Model):
     qualityLevel5 = models.IntegerField()
     qualityLevel6 = models.IntegerField()
 
+
+class BottleVectorFlavourAndAroma(models.Model):
     # flavour list
     floral_flavour = models.IntegerField()
     acacia_flavour = models.IntegerField()
