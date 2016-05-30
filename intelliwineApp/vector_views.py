@@ -12,7 +12,7 @@ from intelliwineApp.similarity import cosine_similarity
 
 
 @api_view(['GET', 'POST'])
-def bottle_vector_list(request):
+def bottle_charac_vector_list(request):
 
     print >> sys.stdout, 'call bottle_vector_list\n'
 
