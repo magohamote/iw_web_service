@@ -49,6 +49,7 @@ class TestSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BottleVectorCharacSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = BottleVectorCharacteristics
         fields = ('intensity1', 'intensity2', 'intensity3', 'intensity4', 'intensity5',
