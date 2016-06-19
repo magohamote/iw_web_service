@@ -5,10 +5,6 @@ owner = models.ForeignKey('auth.User', related_name='bottles')
 highlighted = models.TextField()
 
 
-class TestClass(models.Model):
-    test = models.IntegerField()
-
-
 class BottleDNA(models.Model):
     clarity = models.CharField(max_length=16)
     colorSimple = models.CharField(max_length=10)

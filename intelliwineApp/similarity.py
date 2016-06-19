@@ -8,6 +8,8 @@ def square_rooted(x):
 
 
 def cosine_similarity(x, y):
+    print(x)
+    print(y)
     x_json = get_json_value(x)
     y_json = get_json_value(y)
     numerator = sum(a*b for a, b in zip(x_json, y_json))
@@ -21,3 +23,4 @@ def get_json_value(vector):
         vector_values.append(value)
 
     return vector_values
+

@@ -1,7 +1,12 @@
 from django.db import models
 
 
-class BottleVectorCharacteristics(models.Model):
+class User(models.Model):
+    username = models.CharField(max_length=256)
+
+
+class UserVectorCharacteristics(models.Model):
+    user_foreign_key = models.ForeignKey(User, related_name='charac', default=0)
     intensity1 = models.IntegerField()
     intensity2 = models.IntegerField()
     intensity3 = models.IntegerField()
@@ -59,7 +64,8 @@ class BottleVectorCharacteristics(models.Model):
     qualityLevel6 = models.IntegerField()
 
 
-class BottleVectorFlavourAndAroma(models.Model):
+class UserVectorFlavourAndAroma(models.Model):
+    user_foreign_key = models.ForeignKey(User, related_name='flav_aroma', default=0)
     # flavour list
     floral_flavour = models.IntegerField()
     acacia_flavour = models.IntegerField()
