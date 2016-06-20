@@ -83,11 +83,11 @@ def compute_similarity(request):
     user_charac_serializer = UserCharacSerializer(data=request.data['charac'], many=False)
     user_aroma_serializer = UserAromaSerializer(data=request.data['aroma'], many=False)
 
-    charac_dict = dict()
-    aroma_dict = dict()
-
     if len(bottle_charac_serializer.data) != len(bottle_aroma_serializer.data):
         return Response("Data inconsistency in database", status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    charac_dict = dict()
+    aroma_dict = dict()
 
     for data in bottle_charac_serializer.data:
         charac_dict[data['bottle_foreign_id']] = data
@@ -108,6 +108,7 @@ def compute_similarity(request):
         user_aroma_dict = create_user_aroma_mask(user_aroma_json)
 
         unitary_user_aroma_vector = list()
+
         for _ in user_aroma_dict:
             unitary_user_aroma_vector.append(1)
 
