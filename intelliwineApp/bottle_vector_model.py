@@ -16,7 +16,7 @@ class BottleVectorCharacteristics(models.Model):
     body = models.IntegerField()
     flavour_intensity = models.IntegerField()
     finish = models.IntegerField()
-    qualityLevel = models.IntegerField()
+    quality_level = models.IntegerField()
 
 
 class BottleVectorFlavourAndAroma(models.Model):

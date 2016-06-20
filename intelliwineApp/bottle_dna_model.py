@@ -23,7 +23,7 @@ class BottleDNA(models.Model):
     flavourCharacteristic = models.CharField(max_length=2048)
     observations2 = models.CharField(max_length=256)
     finish = models.CharField(max_length=16)
-    qualityLevel = models.CharField(max_length=16)
+    quality_level = models.CharField(max_length=16)
     structure = models.CharField(max_length=256)
     balance = models.CharField(max_length=256)
     concentration = models.CharField(max_length=256)

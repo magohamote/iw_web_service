@@ -9,13 +9,14 @@ from rest_framework.response import Response
 
 from intelliwineApp.bottle_serializers import BottleVectorCharacSerializer, BottleVectorFlavAromaSerializer, BottleSerializer
 from intelliwineApp.bottle_vector_model import BottleVectorCharacteristics, BottleVectorFlavourAndAroma, Bottle
-from intelliwineApp.user_serializers import UserSerializer, UserAromaSerializer, UserCharacSerializer
-from intelliwineApp.similarity import cosine_similarity
+from intelliwineApp.user_serializers import UserAromaSerializer, UserCharacSerializer
+from intelliwineApp.vector_reduction import create_user_charac_dict, create_user_aroma_mask, reduce_user_charac
+from intelliwineApp.similarity import compute_cosine_similarity
 
 
 @api_view(['POST'])
 def post_bottle(request):
-    print >> sys.stdout, 'call post_bottle\n'
+    print('call post_bottle\n', file=sys.stdout)
 
     bottle_serializer = BottleSerializer(data=request.data[0])
     if bottle_serializer.is_valid():
@@ -44,11 +45,9 @@ def post_bottle(request):
 @api_view(['GET', 'POST'])
 def bottle_charac_vector_list(request):
 
-    print >> sys.stdout, 'call bottle_vector_list\n'
+    print('call bottle_vector_list\n', file=sys.stdout)
 
     if request.method == 'GET':
-        print >> sys.stdout, 'GET'
-
         bottle_charac = BottleVectorCharacteristics.objects.all()
         bottle_flav_aroma = BottleVectorFlavourAndAroma.objects.all()
 
@@ -60,7 +59,7 @@ def bottle_charac_vector_list(request):
         return Response(full_vector)
 
     elif request.method == 'POST':
-        print >> sys.stdout, 'POST data = ', request.data
+        print('POST data = ', request.data, file=sys.stdout)
 
         serializer_charac = BottleVectorCharacSerializer(data=request.data[0])
         serializer_flav_aroma = BottleVectorFlavAromaSerializer(data=request.data[1])
@@ -87,31 +86,53 @@ def compute_similarity(request):
     charac_dict = dict()
     aroma_dict = dict()
 
+    if len(bottle_charac_serializer.data) != len(bottle_aroma_serializer.data):
+        return Response("Data inconsistency in database", status=status.HTTP_406_NOT_ACCEPTABLE)
+
     for data in bottle_charac_serializer.data:
         charac_dict[data['bottle_foreign_id']] = data
 
     for data in bottle_aroma_serializer.data:
         aroma_dict[data['bottle_foreign_id']] = data
 
-    sorted_charac = collections.OrderedDict(sorted(charac_dict.items()))
-    sorted_aroma = collections.OrderedDict(sorted(aroma_dict.items()))
+    sorted_bottle_charac = collections.OrderedDict(sorted(charac_dict.items()))
+    sorted_bottle_aroma = collections.OrderedDict(sorted(aroma_dict.items()))
 
+    if user_charac_serializer.is_valid() and user_aroma_serializer.is_valid():
+        user_charac_content = JSONRenderer().render(user_charac_serializer.validated_data)
+        user_aroma_content = JSONRenderer().render(user_aroma_serializer.validated_data)
+        user_charac_json = json.loads(user_charac_content.decode('utf-8'))
+        user_aroma_json = json.loads(user_aroma_content.decode('utf-8'))
 
+        user_charac_dict = create_user_charac_dict(user_charac_json)
+        user_aroma_dict = create_user_aroma_mask(user_aroma_json)
 
+        unitary_user_aroma_vector = list()
+        for _ in user_aroma_dict:
+            unitary_user_aroma_vector.append(1)
 
-    # serializer_user = BottleVectorCharacSerializer(data=request.data)
-    #
-    # score = 0
-    #
-    # if serializer_user.is_valid():
-    #
-    #     vector_charac_content = JSONRenderer().render(serializer_vector_charac.data)
-    #     vector_charac_json_data = json.loads(vector_charac_content)
-    #
-    #     for vector in vector_charac_json_data:
-    #         score = max(score, cosine_similarity(vector, serializer_user.data))
-    #
-    #     return Response(score, status=status.HTTP_200_OK)
+        # print("user_charac_dict", file=sys.stdout)
+        # print(user_charac_dict, file=sys.stdout)
+        # print("\n", file=sys.stdout)
+        #
+        # print("user_aroma_dict", file=sys.stdout)
+        # print(user_aroma_dict, file=sys.stdout)
+        # print("\n", file=sys.stdout)
+        #
+        # print("sorted_bottle_charac", file=sys.stdout)
+        # print(sorted_bottle_charac, file=sys.stdout)
+        # print("\n", file=sys.stdout)
+        #
+        # print("sorted_bottle_aroma", file=sys.stdout)
+        # print(sorted_bottle_aroma, file=sys.stdout)
+        # print("\n", file=sys.stdout)
+        #
+        # print("unitary_user_aroma_vector", file=sys.stdout)
+        # print(unitary_user_aroma_vector, file=sys.stdout)
+        # print("\n", file=sys.stdout)
+
+        answer = compute_cosine_similarity(user_charac_dict, user_aroma_dict, sorted_bottle_charac, sorted_bottle_aroma, unitary_user_aroma_vector)
+        return Response(answer, status=status.HTTP_200_OK)
 
     return Response(0, status=status.HTTP_400_BAD_REQUEST)
 
@@ -122,7 +143,7 @@ def bottle_vector_detail(request, pk):
     Retrieve, update or delete a snippet instance.
     """
 
-    print >> sys.stdout, 'call bottle_vector_detail\n'
+    print('call bottle_vector_detail\n', file=sys.stdout)
 
     try:
         bottle = BottleVectorCharacteristics.objects.get(pk=pk)

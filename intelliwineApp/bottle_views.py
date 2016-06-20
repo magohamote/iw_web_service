@@ -8,7 +8,7 @@ from rest_framework import status
 
 
 class BottleViewSet(viewsets.ModelViewSet):
-    print >> sys.stdout, 'call BottleViewSet'
+    print('call BottleViewSet', file=sys.stdout)
     queryset = BottleDNA.objects.all().order_by('nameOfTheWine')
     serializer_class = BottleDNASerializer
 
@@ -19,7 +19,7 @@ def bottle_dna_list(request):
     List all bottles, or create a new bottle DNA.
     """
 
-    print >>sys.stdout, 'call bottle_dna_list\n'
+    print('call bottle_dna_list\n', file=sys.stdout)
 
     if request.method == 'GET':
         bottle = BottleDNA.objects.all()
@@ -40,7 +40,7 @@ def bottle_dna_detail(request, pk):
     Retrieve, update or delete a bottle DNA instance.
     """
 
-    print >> sys.stdout, 'call bottle_dna_detail\n'
+    print('call bottle_dna_detail\n', file=sys.stdout)
 
     try:
         bottle = BottleDNA.objects.get(pk=pk)

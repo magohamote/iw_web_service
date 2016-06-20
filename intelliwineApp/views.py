@@ -14,7 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    print >> sys.stdout, 'call UserViewSet'
+    print('call UserViewSet', file=sys.stdout)
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
@@ -23,6 +23,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    print >> sys.stdout, 'call GroupViewSet'
+    print('call GroupViewSet', file=sys.stdout)
     queryset = Group.objects.all()
     serializer_class = GroupSerializer

@@ -1,5 +1,7 @@
 import sys
+from numpy import concatenate
 
+from intelliwineApp.vector_reduction import reduce_bottle_aroma, reduce_user_charac
 from math import*
 
 
@@ -8,19 +10,24 @@ def square_rooted(x):
 
 
 def cosine_similarity(x, y):
-    print(x)
-    print(y)
-    x_json = get_json_value(x)
-    y_json = get_json_value(y)
-    numerator = sum(a*b for a, b in zip(x_json, y_json))
-    denominator = sqrt(sum([a*a for a in x_json]))*sqrt(sum([a*a for a in y_json]))
+    print(x, file=sys.stdout)
+    print(y, file=sys.stdout)
+    numerator = sum(a*b for a, b in zip(x, y))
+    denominator = sqrt(sum([a*a for a in x]))*sqrt(sum([a*a for a in y]))
     return numerator/float(denominator)
 
 
-def get_json_value(vector):
-    vector_values = []
-    for key, value in vector.items():
-        vector_values.append(value)
+def compute_cosine_similarity(user_charac, user_aroma, bottle_charac, bottle_aroma, unitary_user_vector):
 
-    return vector_values
+    score = 0
+    for key in bottle_aroma:
+        reduced_user_charac = reduce_user_charac(user_charac, bottle_charac[key])
+        reduced_bottle_aroma = reduce_bottle_aroma(bottle_aroma[key], user_aroma)
+
+        full_user_vector = concatenate([reduced_user_charac, unitary_user_vector])
+        full_bottle_vector = concatenate([[1, 1, 1, 1, 1, 1, 1, 1, 1], reduced_bottle_aroma])
+
+        score = max(score, cosine_similarity(full_user_vector, full_bottle_vector))
+
+    return score
 
