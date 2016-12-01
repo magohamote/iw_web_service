@@ -69,7 +69,8 @@ def bottle_charac_vector_list(request):
             serializer_charac.save()
             serializer_flav_aroma.save()
             return Response([serializer_charac.data, serializer_flav_aroma.data], status=status.HTTP_201_CREATED)
-        return Response([serializer_charac.errors, serializer_flav_aroma.errors], status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response([serializer_charac.errors, serializer_flav_aroma.errors], status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
