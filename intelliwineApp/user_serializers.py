@@ -25,4 +25,9 @@ class UserAromaSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = UserVectorFlavourAndAroma
-        fields = ('id', 'user_foreign_key', 'floral_flavour', 'green_fruit_flavour', 'citrus_fruit_flavour', 'stone_fruit_flavour', 'tropical_fruit_flavour', 'red_fruit_flavour', 'black_fruit_flavour', 'dried_cooked_fruit_flavour', 'under_ripeness_flavour', 'herbaceous_flavour', 'herbal_flavour', 'vegetable_flavour', 'sweet_spice_flavour', 'pungent_spice_flavour', 'simplicity_neutrality_flavour', 'autolytic_flavour', 'dairy_mlf_flavour', 'oak_flavour', 'kernel_flavour', 'animal_flavour', 'maturity_flavour', 'mineral_flavour', 'anisoles_flavour', 'brettanomyces_flavour', 'oxidation_flavour', 'volatile_acidity_flavour', 'reduction_flavour', 'other_flavour', 'floral_aroma', 'green_fruit_aroma', 'citrus_fruit_aroma', 'stone_fruit_aroma', 'tropical_fruit_aroma', 'red_fruit_aroma', 'black_fruit_aroma', 'dried_cooked_fruit_aroma', 'under_ripeness_aroma', 'herbaceous_aroma', 'herbal_aroma', 'vegetable_aroma', 'sweet_spice_aroma', 'pungent_spice_aroma', 'simplicity_neutrality_aroma', 'autolytic_aroma', 'dairy_mlf_aroma', 'oak_aroma', 'kernel_aroma', 'animal_aroma', 'maturity_aroma', 'mineral_aroma', 'anisoles_aroma', 'brettanomyces_aroma', 'oxidation_aroma', 'volatile_acidity_aroma', 'reduction_aroma', 'other_aroma')
+        fields = (
+            'id', 'user_foreign_key', 'floral', 'green_fruit', 'citrus_fruit', 'stone_fruit', 'tropical_fruit',
+            'red_fruit', 'black_fruit', 'dried_cooked_fruit', 'under_ripeness', 'herbaceous', 'herbal', 'vegetable',
+            'sweet_spice', 'pungent_spice', 'simplicity_neutrality', 'autolytic', 'dairy_mlf', 'oak', 'kernel',
+            'animal', 'maturity', 'mineral', 'anisoles', 'brettanomyces', 'oxidation', 'volatile_acidity', 'reduction',
+            'other')
