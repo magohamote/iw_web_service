@@ -36,7 +36,7 @@ class BottleVectorCharacSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = BottleVectorCharacteristics
-        fields = ('id', 'bottle_foreign_id', 'bottle_foreign_key', 'intensity', 'sweetness', 'acidity', 'tannin', 'alcohol', 'body', 'flavour_intensity', 'finish', 'quality_level')
+        fields = ('id', 'bottle_foreign_id', 'bottle_foreign_key', 'sweetness', 'acidity', 'tannin', 'alcohol', 'body', 'flavour_intensity', 'quality_level')
 
 
 class BottleVectorFlavAromaSerializer(serializers.HyperlinkedModelSerializer):

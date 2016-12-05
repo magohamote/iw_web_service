@@ -8,14 +8,12 @@ class Bottle(models.Model):
 class BottleVectorCharacteristics(models.Model):
     bottle_foreign_key = models.ForeignKey(Bottle, related_name='charac', default=0)
     bottle_foreign_id = models.IntegerField(default=0)
-    intensity = models.IntegerField()
     sweetness = models.IntegerField()
     acidity = models.IntegerField()
     tannin = models.IntegerField()
     alcohol = models.IntegerField()
     body = models.IntegerField()
     flavour_intensity = models.IntegerField()
-    finish = models.IntegerField()
     quality_level = models.IntegerField()
 
 

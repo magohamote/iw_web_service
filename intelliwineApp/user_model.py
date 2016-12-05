@@ -7,12 +7,6 @@ class User(models.Model):
 
 class UserVectorCharacteristics(models.Model):
     user_foreign_key = models.ForeignKey(User, related_name='charac', default=0)
-    intensity1 = models.DecimalField(max_digits=3, decimal_places=2)
-    intensity2 = models.DecimalField(max_digits=3, decimal_places=2)
-    intensity3 = models.DecimalField(max_digits=3, decimal_places=2)
-    intensity4 = models.DecimalField(max_digits=3, decimal_places=2)
-    intensity5 = models.DecimalField(max_digits=3, decimal_places=2)
-
     sweetness1 = models.DecimalField(max_digits=3, decimal_places=2)
     sweetness2 = models.DecimalField(max_digits=3, decimal_places=2)
     sweetness3 = models.DecimalField(max_digits=3, decimal_places=2)
@@ -49,12 +43,6 @@ class UserVectorCharacteristics(models.Model):
     flavour_intensity3 = models.DecimalField(max_digits=3, decimal_places=2)
     flavour_intensity4 = models.DecimalField(max_digits=3, decimal_places=2)
     flavour_intensity5 = models.DecimalField(max_digits=3, decimal_places=2)
-
-    finish1 = models.DecimalField(max_digits=3, decimal_places=2)
-    finish2 = models.DecimalField(max_digits=3, decimal_places=2)
-    finish3 = models.DecimalField(max_digits=3, decimal_places=2)
-    finish4 = models.DecimalField(max_digits=3, decimal_places=2)
-    finish5 = models.DecimalField(max_digits=3, decimal_places=2)
 
     quality_level1 = models.DecimalField(max_digits=3, decimal_places=2)
     quality_level2 = models.DecimalField(max_digits=3, decimal_places=2)

@@ -17,7 +17,7 @@ class UserCharacSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = UserVectorCharacteristics
-        fields = ('id', 'user_foreign_key', 'intensity1', 'intensity2', 'intensity3', 'intensity4', 'intensity5', 'sweetness1', 'sweetness2', 'sweetness3', 'sweetness4', 'sweetness5', 'sweetness6', 'acidity1', 'acidity2', 'acidity3', 'acidity4', 'acidity5', 'tannin1', 'tannin2', 'tannin3', 'tannin4', 'tannin5', 'alcohol1', 'alcohol2', 'alcohol3', 'alcohol4', 'alcohol5', 'body1', 'body2', 'body3', 'body4', 'body5', 'flavour_intensity1', 'flavour_intensity2', 'flavour_intensity3', 'flavour_intensity4', 'flavour_intensity5', 'finish1', 'finish2', 'finish3', 'finish4', 'finish5', 'quality_level1', 'quality_level2', 'quality_level3', 'quality_level4', 'quality_level5', 'quality_level6')
+        fields = ('id', 'user_foreign_key', 'sweetness1', 'sweetness2', 'sweetness3', 'sweetness4', 'sweetness5', 'sweetness6', 'acidity1', 'acidity2', 'acidity3', 'acidity4', 'acidity5', 'tannin1', 'tannin2', 'tannin3', 'tannin4', 'tannin5', 'alcohol1', 'alcohol2', 'alcohol3', 'alcohol4', 'alcohol5', 'body1', 'body2', 'body3', 'body4', 'body5', 'flavour_intensity1', 'flavour_intensity2', 'flavour_intensity3', 'flavour_intensity4', 'flavour_intensity5', 'quality_level1', 'quality_level2', 'quality_level3', 'quality_level4', 'quality_level5', 'quality_level6')
 
 
 class UserAromaSerializer(serializers.HyperlinkedModelSerializer):
