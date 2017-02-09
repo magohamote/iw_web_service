@@ -105,8 +105,6 @@ def compute_similarity(request):
         user_charac_json = json.loads(user_charac_content.decode('utf-8'))
         user_aroma_json = json.loads(user_aroma_content.decode('utf-8'))
 
-        print(user_charac_content, file=sys.stdout)
-
         user_charac_dict = create_user_charac_dict(user_charac_json)
         user_aroma_dict = create_user_aroma_mask(user_aroma_json)
 
