@@ -12,6 +12,7 @@ def square_rooted(x):
 def cosine_similarity(x, y):
     numerator = sum(a*b for a, b in zip(x, y))
     denominator = sqrt(sum([a*a for a in x]))*sqrt(sum([a*a for a in y]))
+    print('x: ', x, '\n', 'y: ', y, '\n', file=sys.stdout)
     return numerator/float(denominator)
 
 
