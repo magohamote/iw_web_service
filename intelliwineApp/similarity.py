@@ -12,7 +12,6 @@ def square_rooted(x):
 def cosine_similarity(x, y):
     numerator = sum(a*b for a, b in zip(x, y))
     denominator = sqrt(sum([a*a for a in x]))*sqrt(sum([a*a for a in y]))
-    print('x: ', x, '\n', 'y: ', y, '\n', file=sys.stdout)
     return numerator/float(denominator)
 
 
@@ -23,6 +22,7 @@ def compute_cosine_similarity(user_charac, user_aroma, bottle_charac, bottle_aro
         reduced_user_charac = reduce_user_charac(user_charac, bottle_charac[key])
         reduced_bottle_aroma = reduce_bottle_aroma(bottle_aroma[key], user_aroma)
 
+        print(reduced_user_charac, ' ', unitary_user_vector, file=sys.stdout)
         full_user_vector = concatenate([reduced_user_charac, unitary_user_vector])
         full_bottle_vector = concatenate([[1, 1, 1, 1, 1, 1, 1, 1, 1], reduced_bottle_aroma])
 
